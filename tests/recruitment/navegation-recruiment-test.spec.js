@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 const { RecruitmentPage } = require('../../pages/RecruitmentPage');
 
 
-test('test', async ({ page }) => {
+test('Debe navegar correctamente al módulo de reclutamiento', async ({ page }) => {
 // Creacion de la instancia de la clase recruitmentPage
   const recruitmentPage = new RecruitmentPage(page);
 
