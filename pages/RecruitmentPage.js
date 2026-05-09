@@ -18,6 +18,9 @@ export class RecruitmentPage {
         this.vacancyOption = page.getByRole('option', { name: 'Software Engineer' });
         this.emailInput = page.getByRole('textbox', { name: 'Type here' }).first();
         this.emailequired = page.getByText('Expected format: admin@');
+        this.numberInput = page.getByRole('textbox', { name: 'Type here' }).nth(1);
+        this.keywordInput = page.getByRole('textbox', { name: 'Enter comma seperated words...' });
+        this.notes = page.locator('textarea');
     }
 
     async goToRecruitment() {
@@ -26,13 +29,16 @@ export class RecruitmentPage {
 
 
 
-    async fillCandidateData(fname, mname, lname, mail) {
+    async fillCandidateData(fname, mname, lname, mail, tnumber, keyword, notes) {
         await this.firstNameInput.fill(fname);
         await this.middleNameInput.fill(mname);
         await this.lastNameInput.fill(lname);
         await this.jobElection.click();
         await this.vacancyOption.click();
         await this.emailInput.fill(mail);
+        await this.numberInput.fill(tnumber);
+        await this.keywordInput.fill(keyword);
+        await this.notes.fill(notes);
         await this.saveButton.click();
     }
 }
