@@ -9,6 +9,15 @@ export class RecruitmentPage {
         this.email = page.locator('input[placeholder="Type here"]').first(); // Selector específico si no hay roles
         this.saveButton = page.getByRole('button', { name: 'Save' });
         this.successToast = page.locator('#oxd-toaster_1');
+
+        //nuevo elementos de la seccion para agregar candidatos
+        this.firstNameInput = page.getByRole('textbox', { name: 'First Name' });
+        this.middleNameInput = page.getByRole('textbox', { name: 'Middle Name' });
+        this.lastNameInput = page.getByRole('textbox', { name: 'Last Name' });
+        this.jobElection = page.locator('i').nth(5);
+        this.vacancyOption = page.getByRole('option', { name: 'Software Engineer' });
+        this.emailInput = page.getByRole('textbox', { name: 'Type here' }).first();
+        this.emailequired = page.getByText('Expected format: admin@');
     }
 
     async goToRecruitment() {
@@ -17,10 +26,13 @@ export class RecruitmentPage {
 
 
 
-    async fillCandidateData(fname, lname, mail) {
-        await this.firstName.fill(fname);
-        await this.lastName.fill(lname);
-        await this.email.fill(mail);
+    async fillCandidateData(fname, mname, lname, mail) {
+        await this.firstNameInput.fill(fname);
+        await this.middleNameInput.fill(mname);
+        await this.lastNameInput.fill(lname);
+        await this.jobElection.click();
+        await this.vacancyOption.click();
+        await this.emailInput.fill(mail);
         await this.saveButton.click();
     }
 }
