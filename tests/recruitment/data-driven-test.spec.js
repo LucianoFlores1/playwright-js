@@ -3,10 +3,38 @@ const { RecruitmentPage } = require('../../pages/RecruitmentPage');
 const {LoginPage} = require('../../pages/LoginPage');
 
 const emailsInvalidos = [
-  { mail: 'testsinarroba.com', desc: 'Email sin @' },
-  { mail: 'usuario@dominio',    desc: 'Email sin punto' },
-  { mail: '@dominio.com',       desc: 'Email sin usuario' },
-  { mail: 'admin@example.com',      desc: 'Email que cumple con los requisitos (deberia dar error)' },
+  { mail: 'testsinarroba.com', 
+    desc: 'Email sin @',
+    firstName: 'Luciano',
+    middleName: 'Rafael',
+    lastName: 'Flores',
+    phone: '1234567890',
+    job: 'software,engineer',
+    notes: 'Notas de prueba'},
+  { mail: 'usuario@dominio',    
+    desc: 'Email sin punto',
+    firstName: 'Luciano',
+    middleName: 'Rafael',
+    lastName: 'Flores',
+    phone: '1234567890',
+    job: 'software,engineer',
+    notes: 'Notas de prueba' },
+  { mail: '@dominio.com',       
+    desc: 'Email sin usuario',
+    firstName: 'Luciano',
+    middleName: 'Rafael',
+    lastName: 'Flores',
+    phone: '1234567890',
+    job: 'software,engineer',
+    notes: 'Notas de prueba'},
+  { mail: 'admin@example.com',      
+    desc: 'Email que cumple con los requisitos (debería dar error)',
+    firstName: 'Luciano',
+    middleName: 'Rafael',
+    lastName: 'Flores',
+    phone: '1234567890',
+    job: 'software,engineer',
+    notes: 'Notas de prueba'},
 ];
 
 
@@ -22,7 +50,7 @@ for (const item of emailsInvalidos) {
 
         // ACT
     await recruit.addButton.click();
-    await recruit.fillCandidateData('Luciano', 'Rafael', 'Flores', item.mail);
+    await recruit.fillCandidateData(item.firstName, item.middleName, item.lastName, item.mail, item.phone, item.job, item.notes);
 
         // ASSERT
     await expect(page.getByText('Expected format: admin@')).toBeVisible();
