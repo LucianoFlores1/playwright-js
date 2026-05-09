@@ -8,4 +8,10 @@ export class LoginPage {
     this.passInput = page.getByPlaceholder('Password');
     this.loginBtn  = page.getByRole('button', { name: 'Login' });
   }
+
+  async login(username, password) {
+    await this.userInput.fill(username);
+    await this.passInput.fill(password);
+    await this.loginBtn.click();
+  }
 }
