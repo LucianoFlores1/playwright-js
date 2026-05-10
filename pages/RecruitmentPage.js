@@ -21,13 +21,23 @@ export class RecruitmentPage {
         this.numberInput = page.getByRole('textbox', { name: 'Type here' }).nth(1);
         this.keywordInput = page.getByRole('textbox', { name: 'Enter comma seperated words...' });
         this.notes = page.locator('textarea');
+
+        //elementos para el test de filtros
+        this.vacancyFilter = page.getByText('-- Select --').nth(1);
+        this.vacancyOption = page.locator('form').getByText('Senior QA Lead');
+        this.searchButton = page.getByRole('button', { name: 'Search' });
+        this.firstResultRow = page.locator('.oxd-table-card').first();
     }
 
     async goToRecruitment() {
         await this.menuRecruitment.click();
     }
 
-
+    async vacancyFilterSelect() {
+        await this.vacancyFilter.click();
+        await this.vacancyOption.click();
+        await this.searchButton.click();
+    }
 
     async fillCandidateData(fname, mname, lname, mail, tnumber, keyword, notes) {
         await this.firstNameInput.fill(fname);
