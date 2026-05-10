@@ -3,7 +3,7 @@ const { RecruitmentPage } = require('../../pages/RecruitmentPage');
 const {LoginPage} = require('../../pages/LoginPage');
 
 
-test('Debe filtrar candidatos por nombre', async ({ page }) => {
+test('Debe filtrar candidatos por el filtro de la vacante', async ({ page }) => {
     const recruit = new RecruitmentPage(page);
     const login = new LoginPage(page);
     // ARRANGE
