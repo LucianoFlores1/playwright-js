@@ -27,6 +27,7 @@ export class RecruitmentPage {
         this.vacancyOption = page.locator('form').getByText('Senior QA Lead');
         this.searchButton = page.getByRole('button', { name: 'Search' });
         this.firstResultRow = page.locator('.oxd-table-card').first();
+        this.tabVacancies = page.locator('.oxd-pagination-page-item.oxd-pagination-page-item--previous-next')
     }
 
     async goToRecruitment() {
