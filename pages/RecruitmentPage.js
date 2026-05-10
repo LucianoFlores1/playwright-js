@@ -28,6 +28,7 @@ export class RecruitmentPage {
         this.searchButton = page.getByRole('button', { name: 'Search' });
         this.firstResultRow = page.locator('.oxd-table-card').first();
         this.tabVacancies = page.locator('.oxd-pagination-page-item.oxd-pagination-page-item--previous-next')
+        this.searchByKeywordInput = (page.getByRole('textbox', { name: 'Enter comma seperated words...' }))
     }
 
     async goToRecruitment() {
@@ -37,6 +38,11 @@ export class RecruitmentPage {
     async vacancyFilterSelect() {
         await this.vacancyFilter.click();
         await this.vacancyOption.click();
+        await this.searchButton.click();
+    }
+
+    async searchByKeyword(keyword) {
+        await this.searchByKeywordInput.fill(keyword);
         await this.searchButton.click();
     }
 
