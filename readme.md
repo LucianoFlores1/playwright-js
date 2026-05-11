@@ -1,88 +1,141 @@
-# Diseño de casos de prueba (AAA)
+# Pruebas de Automatización - Módulo Recruitment
 
-En este branch comenzamos a organizar mejor los casos de prueba.
+Este directorio contiene el conjunto completo de casos de prueba automatizados para el módulo **Recruitment** de la aplicación OrangeHRM.
 
-Hasta ahora los tests estaban escritos directamente dentro de los archivos `.spec.js`, repitiendo acciones como abrir la página o realizar login.
+## 📋 Descripción
 
-En este punto del curso introducimos dos conceptos importantes:
+Las pruebas incluyen:
+- Navegación por el módulo de recruitment
+- Búsqueda de candidatos
+- Creación, edición y eliminación de candidatos
+- Validación de campos requeridos
+- Cambio de pestañas
+- Pruebas de cobertura funcional completa
 
-- estructura de test **AAA (Arrange / Act / Assert)**
-- **reutilización de acciones** mediante funciones helper
+## 🛠️ Instalación
 
-El objetivo es escribir tests más claros y evitar repetir código.
+### 1. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 2. Instalar Playwright y navegadores si fuera necesario
+
+```bash
+npx playwright install
+```
+
+### 3. Instalar Allure CLI
+
+Si no está instalado:
+
+```bash
+npm install -g allure
+```
+
+Verificar instalación:
+
+```bash
+allure --version
+```
+
+## 🚀 Ejecutar pruebas
+
+### Ejecutar todas las pruebas del módulo Recruitment
+
+```bash
+npx playwright test tests/recruitment
+```
+
+Las pruebas se ejecutarán en Chrome visible.
+
+### Ejecutar pruebas con opciones específicas
+
+**Ejecutar un archivo de prueba específico:**
+
+```bash
+npx playwright test tests/recruitment/search-test.spec.js
+```
+
+**Ejecutar en modo debug:**
+
+```bash
+npx playwright test --debug
+```
+
+**Ejecutar con reporte detallado:**
+
+```bash
+npx playwright test --reporter=html
+```
+
+## 📊 Ver Reportes
+
+### Ver reporte HTML de Playwright
+
+```bash
+npx playwright show-report
+```
+
+### Generar reporte Allure
+
+```bash
+allure generate ./allure-results --clean -o ./allure-report
+```
+
+### Abrir reporte Allure
+
+```bash
+allure open ./allure-report
+```
+
+## 📁 Estructura de archivos
+
+```
+tests/recruitment/
+├── add-candidate-negative-required-field-test.spec.js    # Validación de campos requeridos
+├── complete-candidate-registr.spec.js                    # Registro completo de candidato
+├── data-driven-test.spec.js                              # Pruebas data-driven
+├── delete-candidate-test.spec.js                         # Eliminación de candidatos
+├── keyword-search-test.spec.js                           # Búsqueda por palabras clave
+├── navegation-recruiment-test.spec.js                    # Navegación del módulo
+├── search-test.spec.js                                   # Búsqueda de candidatos
+├── tab-switch-test.spec.js                               # Cambio de pestañas
+├── cobertura-pruebas.md                                  # Documentación de cobertura
+```
+
+## ⚙️ Requisitos Previos
+
+- **Node.js** v14 o superior
+- **npm** v6 o superior
+- **Playwright** (se instala con npm install)
+- **Allure CLI** (se instala con npm install -g allure)
+
+## 🔧 Configuración
+
+La configuración de Playwright se encuentra en:
+
+```
+playwright.config.js
+```
+
+Las configuraciones principales incluyen:
+- Navegadores: Chrome
+- Tiempo de espera: 30 segundos
+- Modo headless: deshabilitado (para ver la ejecución)
+
+## 📝 Notas
+
+- Las pruebas utilizan la estructura **AAA (Arrange/Act/Assert)**
+- Se reutilizan funciones helper para acciones comunes
+- Los datos de prueba están centralizados en `data/`
+- Los reportes se generan automáticamente en cada ejecución
+
+## 🤝 Contacto
+
+Para dudas o reportar problemas con las pruebas, consulta con el equipo de QA.
 
 ---
 
-# Estructura AAA
-
-Los tests ahora siguen la siguiente estructura:
-
-
-Arrange → preparar el escenario
-Act → ejecutar la acción que queremos probar
-Assert → validar el resultado esperado
-
-
-Ejemplo:
-
-```javascript
-test('Login exitoso', async ({ page }) => {
-
-  // Arrange
-  await goToLogin(page)
-
-  // Act
-  await login(page, username, password)
-
-  // Assert
-  await validarDashboard(page)
-
-})
-```
-
-Esto permite que el test sea más fácil de leer y entender.
-
-## Nueva estructura del proyecto
-
-En este branch se introducen nuevas carpetas para organizar mejor el proyecto.
-
-
-+ data/
-+ helpers/
-+ tests/
-
-### data/
-
-Contiene datos de prueba que serán utilizados por los tests.
-
-Ejemplo:
-
-data/users.json
-
-**Separar los datos del código permite:**
-
-+ reutilizar información
-
-+ modificar datos sin cambiar los tests
-
-+ preparar escenarios de prueba más fácilmente
-
-### helpers/
-
-Contiene funciones reutilizables que representan acciones comunes dentro de la aplicación.
-
-**Ejemplos:** 
-
-1) abrir la página de login
-
-2) realizar login
-
-3) validar que el dashboard esté visible
-
-Esto evita repetir el mismo código en cada caso de prueba.
-
-### tests/
-
-Contiene los casos de prueba automatizados.
-
-Cada archivo .spec.js representa un conjunto de pruebas.
+**Última actualización:** Mayo 2026
