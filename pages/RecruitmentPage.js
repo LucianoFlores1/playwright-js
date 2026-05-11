@@ -9,6 +9,9 @@ export class RecruitmentPage {
         this.email = page.locator('input[placeholder="Type here"]').first(); // Selector específico si no hay roles
         this.saveButton = page.getByRole('button', { name: 'Save' });
         this.successToast = page.locator('#oxd-toaster_1');
+        this.profileoptions = page.locator('.oxd-userdropdown');
+        this.logoutButton = page.getByRole('menuitem', { name: 'Logout' });
+
 
         //nuevo elementos de la seccion para agregar candidatos
         this.firstNameInput = page.getByRole('textbox', { name: 'First Name' });
@@ -37,6 +40,11 @@ export class RecruitmentPage {
 
     async goToRecruitment() {
         await this.menuRecruitment.click();
+    }
+
+    async logout() {
+        await this.profileoptions.click();
+        await this.logoutButton.click();
     }
 
     async vacancyFilterSelect() {
