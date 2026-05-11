@@ -29,6 +29,10 @@ export class RecruitmentPage {
         this.firstResultRow = page.locator('.oxd-table-card').first();
         this.tabVacancies = page.locator('.oxd-pagination-page-item.oxd-pagination-page-item--previous-next')
         this.searchByKeywordInput = (page.getByRole('textbox', { name: 'Enter comma seperated words...' }))
+        this.firstCheckbox = page.locator('.oxd-icon.bi-check').first();
+        this.deleteButton = page.getByRole('button', { name: ' Delete Selected' });
+        this.deleteConfirmButton = page.getByRole('button', { name: ' Yes, Delete' });
+
     }
 
     async goToRecruitment() {
@@ -57,5 +61,11 @@ export class RecruitmentPage {
         await this.keywordInput.fill(keyword);
         await this.notes.fill(notes);
         await this.saveButton.click();
+    }
+
+    async deleteFirstCandidate() {
+        await this.firstCheckbox.click();
+        await this.deleteButton.click();
+        await this.deleteConfirmButton.click();
     }
 }
